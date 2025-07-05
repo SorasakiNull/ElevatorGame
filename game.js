@@ -14,7 +14,7 @@ class ElevatorGame {
         
         this.initializeElements();
         this.bindEvents();
-        this.startGame();
+        // ゲームは自動開始しない
     }
 
     initializeElements() {
@@ -349,10 +349,11 @@ class ElevatorGame {
         this.passengers = [];
         this.elevatorPassengers = [];
         
-        // 少し待ってから新しいゲームを開始（タイマーの完全クリアを確実にする）
-        setTimeout(() => {
-            this.startGame();
-        }, 100);
+        // スタート画面に戻る
+        const startScreen = document.querySelector('.start-screen');
+        const gameContainer = document.querySelector('.game-container');
+        startScreen.style.display = 'flex';
+        gameContainer.classList.remove('active');
     }
 
     updateElevatorDisplay() {
@@ -372,6 +373,22 @@ class ElevatorGame {
 function restartGame() {
     if (window.elevatorGame) {
         window.elevatorGame.restart();
+    }
+}
+
+// スタートボタンをクリックしてゲームを開始
+function startGame() {
+    // スタート画面を非表示
+    const startScreen = document.querySelector('.start-screen');
+    startScreen.style.display = 'none';
+    
+    // ゲーム画面を表示
+    const gameContainer = document.querySelector('.game-container');
+    gameContainer.classList.add('active');
+    
+    // ゲームを開始
+    if (window.elevatorGame) {
+        window.elevatorGame.startGame();
     }
 }
 

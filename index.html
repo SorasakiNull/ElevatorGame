@@ -238,6 +238,32 @@
         .restart-btn:hover {
             transform: scale(1.05);
         }
+
+        .share-btn {
+            background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .share-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
     </style>
 </head>
 <body>
@@ -308,6 +334,12 @@
             <h2>ゲーム終了！</h2>
             <div class="final-score">最終スコア: <span id="final-score">0</span></div>
             <button class="restart-btn" onclick="restartGame()">もう一度プレイ</button>
+            <button class="share-btn" onclick="shareScore()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Xでスコアをシェア
+            </button>
         </div>
     </div>
 

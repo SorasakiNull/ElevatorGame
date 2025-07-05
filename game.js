@@ -375,6 +375,19 @@ function restartGame() {
     }
 }
 
+// X（Twitter）でスコアをシェアする機能
+function shareScore() {
+    const score = window.elevatorGame ? window.elevatorGame.score : 0;
+    const text = `エレベーターゲームで${score}ポイント獲得しました！🚀 #エレベーターゲーム`;
+    const url = window.location.href;
+    
+    // Twitter Web Intentを使用
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    
+    // 新しいウィンドウでTwitter投稿画面を開く
+    window.open(twitterUrl, '_blank', 'width=600,height=400');
+}
+
 // ゲーム開始
 document.addEventListener('DOMContentLoaded', () => {
     window.elevatorGame = new ElevatorGame();

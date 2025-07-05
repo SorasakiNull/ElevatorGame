@@ -29,7 +29,7 @@ class ElevatorGame {
         
         this.updateElevatorPosition();
         this.updateScore();
-        this.updateTimer();
+        // タイマーはゲーム開始時に更新
     }
 
     bindEvents() {
@@ -350,10 +350,10 @@ class ElevatorGame {
         this.elevatorPassengers = [];
         
         // スタート画面に戻る
-        const startScreen = document.querySelector('.start-screen');
-        const gameContainer = document.querySelector('.game-container');
-        startScreen.style.display = 'flex';
-        gameContainer.classList.remove('active');
+        const startScreen = document.getElementById('start-screen');
+        const gameContainer = document.getElementById('game-container');
+        if (startScreen) startScreen.style.display = 'flex';
+        if (gameContainer) gameContainer.classList.remove('active');
     }
 
     updateElevatorDisplay() {
@@ -378,17 +378,32 @@ function restartGame() {
 
 // スタートボタンをクリックしてゲームを開始
 function startGame() {
+    console.log('startGame function called');
+    
     // スタート画面を非表示
-    const startScreen = document.querySelector('.start-screen');
-    startScreen.style.display = 'none';
+    const startScreen = document.getElementById('start-screen');
+    if (startScreen) {
+        startScreen.style.display = 'none';
+        console.log('Start screen hidden');
+    } else {
+        console.error('Start screen not found');
+    }
     
     // ゲーム画面を表示
-    const gameContainer = document.querySelector('.game-container');
-    gameContainer.classList.add('active');
+    const gameContainer = document.getElementById('game-container');
+    if (gameContainer) {
+        gameContainer.classList.add('active');
+        console.log('Game container activated');
+    } else {
+        console.error('Game container not found');
+    }
     
     // ゲームを開始
     if (window.elevatorGame) {
         window.elevatorGame.startGame();
+        console.log('Game started');
+    } else {
+        console.error('ElevatorGame instance not found');
     }
 }
 
@@ -407,5 +422,26 @@ function shareScore() {
 
 // ゲーム開始
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing game');
+    
+    // 要素の存在確認
+    const startScreen = document.getElementById('start-screen');
+    const gameContainer = document.getElementById('game-container');
+    
+    if (!startScreen) {
+        console.error('Start screen not found in DOM');
+    }
+    if (!gameContainer) {
+        console.error('Game container not found in DOM');
+    }
+    
+    // ゲームインスタンスを作成
     window.elevatorGame = new ElevatorGame();
+    console.log('ElevatorGame instance created');
+    
+    // スタート画面が表示されていることを確認
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+        console.log('Start screen displayed');
+    }
 }); 

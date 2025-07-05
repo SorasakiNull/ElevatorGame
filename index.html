@@ -23,11 +23,11 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             max-width: 800px;
             width: 100%;
-            display: none;
+            display: none !important;
         }
 
         .game-container.active {
-            display: block;
+            display: block !important;
         }
 
         .game-header {
@@ -321,7 +321,7 @@
     </style>
 </head>
 <body>
-    <div class="start-screen">
+    <div class="start-screen" id="start-screen">
         <div class="start-screen-content">
             <h2>エレベーターゲーム</h2>
             <p>このゲームはエレベーターを操作して乗客を運ぶゲームです。</p>
@@ -329,7 +329,7 @@
         </div>
     </div>
 
-    <div class="game-container">
+    <div class="game-container" id="game-container">
         <div class="game-header">
             <h1>エレベーターゲーム</h1>
         </div>
